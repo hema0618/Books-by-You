@@ -1,7 +1,7 @@
 -- Drop the database if exists--
-DROP DATABSE IF EXISTS books_db;
+DROP DATABASE IF EXISTS books_db;
 -- create a database--
-CREATE DATABSE books_db;
+CREATE DATABASE books_db;
 
 -- Use database--
 USE books_db;

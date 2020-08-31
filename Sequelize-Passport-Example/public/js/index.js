@@ -13,6 +13,11 @@ function title(title){
         url: titleURL,
         method: "GET"
     }).then(function(response){
-        $(".card-title").text(response.items[0].)
+        $(".card-title").text(response.items[0].volumeInfo.title);
+        //author
+        response.items[0].volumeInfo.authors;
+        //description
+        response.items[0].volumeInfo.description;
+        
     })
 }
