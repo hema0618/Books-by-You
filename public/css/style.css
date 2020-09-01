@@ -1,0 +1,38 @@
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
+a:link {
+  font-weight: bolder;
+}
+
+#navBars{
+  border: blue;
+}
+
+.jumbotron{
+  position: relative;
+  background: transparent;
+  color: white;
+}
+
+
+#containerSearch {
+  text-align: center;
+}
+
+
+  .form-control {
+    border: 2px solid #007bff;
+    box-shadow: 0 1px 0 0 #007bff;
+    max-width: 50%;
+    display: inline-block;
+    
+  }
+  
