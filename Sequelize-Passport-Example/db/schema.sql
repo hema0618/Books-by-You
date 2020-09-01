@@ -22,12 +22,13 @@ CREATE TABLE rating (
 
 );
 
-CREATE TABLE customer(
-    Login_id Char(20) NOT NULL PRIMARY KEY,
-    Name Varchar(60) DEFAULT NULL,
-    password Varchar(16) DEFAULT NULL,
-    phone_num text,
-
+CREATE TABLE Customers (
+    customer_ID varchar (60) NOT NULL PRIMARY KEY,
+    First_name Varchar(60),
+    Last_name Varchar(60),
+    Customer_email Varchar(60),
+    Customer_phone Varchar(60) NOT NULL
 )
+
 
 
