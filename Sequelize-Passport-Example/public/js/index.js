@@ -18,6 +18,17 @@ function title(title){
         response.items[0].volumeInfo.authors;
         //description
         response.items[0].volumeInfo.description;
-        
-    })
+        //rating
+        response.items[0].volumeInfo.averageRating;
+        //image
+        response.items[0].volumeInfo.imageLinks.thumbnail;
+        //for sale or not  "FOR_SALE", "NOT_FOR_SALE", "FREE"
+        response.items[0].saleInfo.saleability;
+        //price
+        response.items[0].saleInfo.listPrice.amount;
+        // currency
+        response.items[0].saleInfo.listPrice.currencyCode;
+        // buy link
+        response.items[0].saleInfo.buylink;
+    });
 }
