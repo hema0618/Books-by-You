@@ -1,4 +1,46 @@
+
+body {
+  background-image: url("./blurred.png");
+  font-weight: bold;
+  color: black ;
+  text-align: center;
+  
+}
+
+.container {
+  align-content: center;
+  border: 2px solid #007bff;
+  min-width: 250px;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#email-input {
+  border: 2px solid #007bff;
+}
+
+#password-input {
+  border: 2px solid #007bff;
+}
+
+#login-button {
+  background-color: #007bff;
+  color: white;
+
+}
+
+h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: #007bff;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
 }
+
+

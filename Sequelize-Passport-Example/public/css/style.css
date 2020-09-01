@@ -27,6 +27,9 @@ a:link {
   text-align: center;
 }
 
+#search_box{
+  display: inline-flexbox;
+}
 
   .form-control {
     border: 2px solid #007bff;

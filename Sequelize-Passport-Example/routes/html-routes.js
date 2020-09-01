@@ -24,7 +24,7 @@ module.exports = function (app) {
   // route for index
   app.get("/index", (req, res) => {
     if (req.user) {
-      res.redirect("/memberss");
+      res.redirect("/members");
     }
     res.sendFile(path.join(_dirname, "../public/index.html"));
 
