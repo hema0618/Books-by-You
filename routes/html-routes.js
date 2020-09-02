@@ -22,13 +22,13 @@ module.exports = function (app) {
   });
 
   // route for index
-  // app.get("/index", (req, res) => {
-  //   if (req.user) {
-  //     res.redirect("/members");
-  //   }
-  //   res.sendFile(path.join(_dirname, "../public/index.html"));
+  app.get("/index", (req, res) => {
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.sendFile(path.join(_dirname, "../public/index.html"));
 
-  // });
+  });
   
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
