@@ -1,5 +1,8 @@
+
+
+
 var baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
-var apiKey = "&92c13ca014msh69a5e7877c22b96p156eb2jsnfc551398d102";
+var API_KEY = "&92c13ca014msh69a5e7877c22b96p156eb2jsnfc551398d102";
 
 $(".searchBtn").on("click", function(event){
     event.preventDefault();
@@ -11,7 +14,7 @@ $(".searchBtn").on("click", function(event){
 });
 
 function search(title){
-    let titleURL = baseURL + title + apiKey;
+    let titleURL = baseURL + title + API_KEY;
     console.log(titleURL);
     $.ajax({
         url: titleURL,
