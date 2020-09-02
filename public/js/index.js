@@ -6,16 +6,18 @@ $(".searchBtn").on("click", function(event){
     var title = $(".input").val().trim();
     var titleArr = title.split(" ");
     title = titleArr.join("+")
-    title = '"' + title + '"';
-    title(title);
+    var query = '"' + title + '"';
+    search(query);
 });
 
-function title(title){
-    let titleURL = baseUrl + title + apikey;
+function search(title){
+    let titleURL = baseURL + title + apiKey;
+    console.log(titleURL);
     $.ajax({
         url: titleURL,
         method: "GET"
     }).then(function(response){
+        console.log(response);
         display(response);
     });
 }
@@ -32,45 +34,42 @@ function display(response){
             var index = 0;
         }
         for(var j = 0; i<5; i++){
-        
+
+            if(response.items[index].saleInfo.saleability === "NOT_FOR_SALE"){
+                var purchasable = `<li class="list-group-item">Not For Sale</li>
+                </ul>
+                <p class="card-text">${response.items[index].volumeInfo.description}</p>
+            </div>
+        </div>
+    </div>`
+            } else if (response.items[index].saleInfo.saleability === "FOR_SALE"){
+                var purchasable = `<li class="list-group-item"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.listPrice.amount} ${response.items[index].saleInfo.listPrice.currencyCode}</a></li>
+                </ul>
+                <p class="card-text">${response.items[index].volumeInfo.description}</p>
+            </div>
+        </div>
+    </div>`
+            } else {
+                var purchasable = `<li class="list-group-item"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.saleability}</a></li>
+                </ul>
+                <p class="card-text">${response.items[index].volumeInfo.description}</p>
+            </div>
+        </div>
+    </div>`
+            };
+
             const result =`<div class="col-sm-4">
                     <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="${response.items[index].volumeInfo.imageLinks.thumbnail}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">${response.items[index].volumeInfo.title}</h5>
+                        <h5 class="card-title"><bold>${response.items[index].volumeInfo.title}</bold></h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">${response.items[index].volumeInfo.authors}</li>
-                            <li class="list-group-item">${response.items[index].volumeInfo.pageCount}</li>
-                            <li class="list-group-item">${response.items[index].volumeInfo.averageRating}</li>
-                        </ul>
-                        <p class="card-text">${response.items[index].volumeInfo.description}</p>
-                    </div>`;
+                            <li class="list-group-item"><bold>Author(s):</bold> ${response.items[index].volumeInfo.authors}</li>
+                            <li class="list-group-item"><bold>Page Count: </bold>${response.items[index].volumeInfo.pageCount}</li>
+                            <li class="list-group-item"><bold>Rating: </bold>${response.items[index].volumeInfo.averageRating}</li>
+                            ${purchasable}`;
             $(".searchDisplay").append(result);
-            if(response.itmes[index].saleInfo.saleability === "NOT_FOR_SALE"){
-                const purchasable = `<div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Not For Sale</li>
-                </div>
-            </div>
-        </div>`
-                $(".searchDisplay").append(purchasable);
-            } else if (response.items[index].saleInfo.saleability === "FOR_SALE"){
-                const purchasable = `<div class="card-body">
-                    <a href="${response.items[index].saleInfo.buylink}" class="card-link">${response.items[index].saleInfo.listPrice.amount} ${response.items[index].saleInfo.listPrice.currencyCode}</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>`
-                $(".searchDisplay").append(purchasable);
-            } else {
-                const purchasable = `<div class="card-body">
-                    <a href="${response.items[index].saleInfo.buylink}" class="card-link">${response.items[index].saleInfo.saleability}</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>`
-                $(".searchDisplay").append(purchasable);
-            }
+            
             index++;
             localStorage.setItem("index", JSON.stringify(false));
         }
