@@ -8,7 +8,7 @@ const passport = require("./config/passport");
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 
-require('dotenv').config()
+require('dotenv').config();
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
