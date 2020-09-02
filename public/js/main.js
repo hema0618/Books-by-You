@@ -6,7 +6,7 @@ $(".searchBtn").on("click", function(event){
     var title = $(".input").val().trim();
     var titleArr = title.split(" ");
     title = titleArr.join("+")
-    var query = '"' + title + '"';
+    var query = '%22' + title + '%22';
     search(query);
 });
 
@@ -32,8 +32,10 @@ function display(response){
         $(".searchDisplay").append(startRow);
         if(JSON.parse(localStorage.getItem("index"))){
             var index = 0;
+        } else {
+            var index = 5;
         }
-        for(var j = 0; i<5; i++){
+        for(var j = 0; j<5; j++){
 
             if(response.items[index].saleInfo.saleability === "NOT_FOR_SALE"){
                 var purchasable = `<li class="list-group-item">Not For Sale</li>
@@ -57,16 +59,24 @@ function display(response){
         </div>
     </div>`
             };
-
+            // creates an image variable to hold a placeholder, if there is an image the placeholder is replaced with it
+            var image = "https://placehold.it/500&text=n/a"
+            if(response.items[index].volumeInfo.imageLinks){
+                image = response.items[index].volumeInfo.imageLinks.thumbnail;
+            }
+            var rating = "n/a"
+            if(response.items[index].volumeInfo.averageRating){
+                rating = response.items[index].volumeInfo.averageRating;
+            }
             const result =`<div class="col-sm-4">
                     <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="${response.items[index].volumeInfo.imageLinks.thumbnail}" alt="Card image cap">
+                    <img class="card-img-top" src="${image}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><bold>${response.items[index].volumeInfo.title}</bold></h5>
+                        <h5 class="card-title"><strong>${response.items[index].volumeInfo.title}</strong></h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><bold>Author(s):</bold> ${response.items[index].volumeInfo.authors}</li>
-                            <li class="list-group-item"><bold>Page Count: </bold>${response.items[index].volumeInfo.pageCount}</li>
-                            <li class="list-group-item"><bold>Rating: </bold>${response.items[index].volumeInfo.averageRating}</li>
+                            <li class="list-group-item"><strong>Author(s):</strong> ${response.items[index].volumeInfo.authors}</li>
+                            <li class="list-group-item"><strong>Page Count: </strong>${response.items[index].volumeInfo.pageCount}</li>
+                            <li class="list-group-item"><strong>Rating: </strong>${rating}</li>
                             ${purchasable}`;
             $(".searchDisplay").append(result);
             
