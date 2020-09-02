@@ -8,7 +8,7 @@ USE books_db;
 
 -- create a table for wishlist--
 CREATE TABLE wishlist (
-    id int(10) NOT NULL AUTO INCREMENT PRIMARY KEY,
+    id int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id char(30) DEFAULT NULL,
     wishlist_id Varchar (255) NOT NULL,
     CONSTRANTS wishlist_id FOREIGN KEY
