@@ -76,8 +76,4 @@ module.exports = function(app) {
         });
     }
   });
-
-  //1. Get an Api route to POST and GET the wishlist table
-  //2. Pass in user ID
-  //3. Findall
 };
