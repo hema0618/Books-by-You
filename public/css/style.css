@@ -7,9 +7,16 @@
   min-height: 100%;
   z-index: 0;
 }
-
-a:link {
+a {
   font-weight: bolder;
+  font-size: 18px;
+  color: #007bff;
+}
+
+a:hover {
+  font-weight: bolder;
+  font-size: 25px;
+  color: darkcyan;
 }
 
 #navBars{
@@ -20,6 +27,12 @@ a:link {
   position: relative;
   background: transparent;
   color: white;
+}
+
+#jumbotron2{
+  opacity: 60%;
+  color: #007bff;
+  
 }
 
 

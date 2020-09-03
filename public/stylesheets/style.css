@@ -17,6 +17,7 @@ body {
   margin-top: 200px;
   margin-bottom: 200px;
   background-color: white;
+  border-radius: 18px;
 }
 
 #email-input {
