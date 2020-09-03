@@ -30,6 +30,17 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/wishlist", (req, res) => {
+    console.log("GET /API/wishlist", req.body);
+    db.Wishlist.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(data){
+      res.json(data);
+    })
+  })
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
@@ -37,17 +48,32 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
+  app.post("/api/wishlist", (req, res) => {
+    console.log("POST /api/wishlist");
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      return res.json({});
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
+      console.log(req.body);
+      console.log(req.user);
+      db.Wishlist.create({
+        rating: req.body.rating,
+        page_count: req.body.page_count,
+        author: req.body.author,
+        title: req.body.title,
+        card_img: req.body.card_img,
+        UserId: req.user.id
+        
+      })
+        .then((result) => {
+         return res.json(result);
+        })
+        .catch(err => {
+          console.log(err)
+         return res.status(401).json(err);
+        });
     }
   });
 };
