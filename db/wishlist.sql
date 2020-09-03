@@ -1,10 +1,10 @@
 USE books_db;
 -- wishlist--
-INSERT INTO wishlist (user_id,rating,title,card_img,page_count)
- Values('1', '5','abcd','def','145');
-INSERT INTO wishlist (user_id,rating,title,card_img,page_count)
-    values  ('2','8','cde','234');
-INSERT INTO wishlist (user_id,rating,title,card_img,page_count)
-     values ('3','3','rfg','567');
-INSERT INTO wishlist (user_id,rating,title,card_img,page_count)
-     values ('4','8','htg','789')
+INSERT INTO wishlist (user_id,rating,title,card_img,page_count,author,price)
+     Values('1', '5','abcd','145','George','4.99');
+INSERT INTO wishlist (user_id,rating,title,card_img,page_count,author,price)
+     Values('1', '5','abcd','145','Hema','10.99');
+INSERT INTO wishlist (user_id,rating,title,card_img,page_count,author,price)
+     Values('1', '5','abcd','145','Joe','20.99');
+INSERT INTO wishlist (user_id,rating,title,card_img,page_count,author,price)
+     Values('1', '5','abcd','145','Hema','10.99');
