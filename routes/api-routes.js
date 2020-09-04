@@ -82,4 +82,26 @@ module.exports = function(app) {
         });
     }
   });
+
+  app.delete("/api/wishlist/:deleteId", function(req, res) {
+    console.log("delete /api/wishlist/:deleteId");
+    db.Wishlist.destroy({
+      where: {
+        id: req.params.deleteId
+      }
+    }).then(function(result){
+      res.json(result);
+    });
+  });
+
+  app.delete("/api/wishlist", function(req, res){
+    console.log("deleteAll /api/wishlist");
+    db.Wishlist.destroy({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(result){
+      res.json(result);
+    });
+  });
 };
