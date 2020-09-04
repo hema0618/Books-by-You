@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const wishlist = require("../models/wishlist");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -64,11 +65,16 @@ module.exports = function(app) {
         author: req.body.author,
         title: req.body.title,
         card_img: req.body.card_img,
-        UserId: req.user.id
+        UserId: req.user.id,
+        buy_link: req.body.buy_link,
+        price: req.body.price,
+        description: req.body.description
+
         
       })
         .then((result) => {
          return res.json(result);
+         console.log(result);
         })
         .catch(err => {
           console.log(err)

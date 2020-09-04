@@ -89,9 +89,9 @@ function display(response) {
             };
 
             if (response.items[index].saleInfo.saleability === "NOT_FOR_SALE") {
-                var purchasable = `<li class="list-group-item">Not For Sale</li>
+                var purchasable = `<li class="list-group-item" id="buy">Not For Sale</li>
                 </ul>
-                <details>
+                <details class="x">
                     <summary><strong>Description</strong></summary>
                     <p class="card-text">${description}</p>
                 </details>
@@ -99,9 +99,9 @@ function display(response) {
         </div>
     </div>`
             } else if (response.items[index].saleInfo.saleability === "FOR_SALE") {
-                var purchasable = `<li class="list-group-item"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.listPrice.amount} ${response.items[index].saleInfo.listPrice.currencyCode}</a></li>
+                var purchasable = `<li class="list-group-item" id="buy"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.listPrice.amount} ${response.items[index].saleInfo.listPrice.currencyCode}</a></li>
                 </ul>
-                <details>
+                <details class="x">
                     <summary><strong>Description</strong></summary>
                     <p class="card-text">${description}</p>
                 </details>
@@ -109,9 +109,9 @@ function display(response) {
         </div>
     </div>`
             } else {
-                var purchasable = `<li class="list-group-item"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.saleability}</a></li>
+                var purchasable = `<li class="list-group-item" id="buy"><a href="${response.items[index].saleInfo.buyLink}" class="card-link">${response.items[index].saleInfo.saleability}</a></li>
                 </ul>
-                <details>
+                <details class="x">
                     <summary><strong>Description</strong></summary>
                     <p class="card-text">${description}</p>
                 </details>
@@ -161,13 +161,22 @@ $(document).on("click", ".save", function (event) {
     var author = $(this).parent().siblings("#author").text().split(":")[1].trim();
     var title = $(this).parent().parent().siblings("#card-title").text();
     var cardImg = $(this).parent().parent().parent().siblings(".card-img-top").attr("src");
-
+    var description = $(this).parent().parent().siblings(".x").children(".card-text").text();
+    var buyLink = null
+    if ($(this).parent().siblings("#buy").children("a").attr("href")) {
+        buyLink = $(this).parent().siblings("#buy").children("a").attr("href");
+    }
+    var price = $(this).parent().siblings("#buy").text();
+    console.log(price);
     var wishlistObj = {
         rating: rating,
         page_count: pageCount,
         author: author,
         title: title,
-        card_img: cardImg
+        card_img: cardImg,
+        buy_link: buyLink,
+        price: price,
+        description: description
     };
     $.post("/api/wishlist", wishlistObj, function(data) {
         console.log(data);
