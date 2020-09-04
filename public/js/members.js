@@ -1,7 +1,15 @@
 $(document).ready(() => {
 
+getBooks();
+
+function getBooks(){
   $.get("/api/wishlist").then(function(data) {
-    console.log(data);
+    if(!data[0]){
+      $(".display").text("")
+      return;
+    };
+
+    console.log("data: ", data);
     $(".display").text("");
     var iNeedChange = false;
     var jNeedChange = false;
@@ -76,7 +84,7 @@ $(document).ready(() => {
                             <li class="list-group-item" id="author"><strong>Author(s): </strong> ${author}</li>
                             <li class="list-group-item" id="pageCount"><strong>Page Count:</strong> ${pageCount}</li>
                             <li class="list-group-item"  id="rating"><strong>Rating: </strong>${rating}</li>
-                            <li class="list-group-item" id="submit"><button type="button" class="delete btn btn-link"><strong>Delete from Wishlist</strong></button></li>
+                            <li class="list-group-item ${data[index].id}" id="submit"><button type="button" class="delete btn btn-link"><strong>Delete from Wishlist</strong></button></li>
                             ${buyable}`;
 
             display4 = display4 + result;
@@ -95,9 +103,29 @@ $(document).ready(() => {
         };
     };
   });
+}
 
     $(document).on("click", ".delete", function(event){
       event.preventDefault();
-      
-    })  
+      console.log("click works delete");
+      var deleteId = $(this).parent().attr("class").trim().split(" ")[1];
+      console.log("id: ", deleteId);
+      deleteId = parseInt(deleteId);
+      console.log("id: ", deleteId);
+      $.ajax({
+        method: "DELETE",
+        url: "/api/wishlist/" + deleteId
+      })
+        .then(getBooks);
+    });
+
+    $(document).on("click", ".deleteAll", function(event){
+      event.preventDefault();
+      console.log("delete All click");
+      $.ajax({
+        method: "DELETE",
+        url: "/api/wishlist"
+      })
+        .then(getBooks);
+    });
 });
