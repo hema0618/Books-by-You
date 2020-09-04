@@ -12,6 +12,7 @@ CREATE TABLE wishlist (
     page_count int (300) NOT NULL,
     author Varchar (255) NOT NULL,
     price Varchar (255) NOT NULL,
-    buy_link Varchar(255) DEFAULT NULL
+    buy_link Varchar(255) DEFAULT NULL,
+    description TEXT DEFAULT NOT NULL
 );
 

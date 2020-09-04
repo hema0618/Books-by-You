@@ -20,6 +20,18 @@
       author: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      price: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      buy_link:{
+        type:DataTypes.STRING,
+        allowNull: true
+      },
+      description:{
+        type:DataTypes.TEXT,
+        allowNull: false
       }
       
     });

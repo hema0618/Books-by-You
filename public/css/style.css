@@ -26,19 +26,18 @@ a:hover {
 .jumbotron{
   position: relative;
   background: transparent;
-  color: white;
 }
 
-#jumbotron2{
-  opacity: 60%;
-  color: #007bff;
-  
+#jumbo2{
+  background: transparent;
+  border: transparent;
+  text-align: center;
 }
-
 
 #containerSearch {
   text-align: center;
 }
+
 
 #search_box{
   display: inline-flexbox;
