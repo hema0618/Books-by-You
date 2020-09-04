@@ -11,27 +11,17 @@ function getBooks(){
 
     console.log("data: ", data);
     $(".display").text("");
-    var iNeedChange = false;
     var jNeedChange = false;
     var index = 0;
 
-    if (data.length < 12) {
-        iNeedChange = true;
-        if ((data.length % 4) > 0) {
-            jNeedChange = true;
-        }
+
+    if ((data.length % 4) > 0) {
+        jNeedChange = true;
     }
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < Math.floor(data.length/4); i++) {
         var display4 = `<div class="row">`;
 
-        if (iNeedChange) {
-            if (data.length < 5) {
-                i = i + 2;
-            } else if (data.length < 9) {
-                i = i + 1;
-            };
-        };
         for (var j = 0; j < 4; j++) {
 
           var image = data[index].card_img;
@@ -88,11 +78,9 @@ function getBooks(){
                             ${buyable}`;
 
             display4 = display4 + result;
-            if (i === 2 && jNeedChange) {
-                console.log("j", j)
+            if (i === (Math.floor(data.length/4)-1) && jNeedChange) {
                 j = (4 - (data.length % 4));
                 jNeedChange = false;
-                console.log("j", j)
             };
 
             if (j === 3) {
