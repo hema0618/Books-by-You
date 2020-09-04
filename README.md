@@ -1,7 +1,11 @@
 # Books by You
 
-* Contributors
-Georgios Mpovolis,Hema,Oscar Chiriboga
+# Heroku Deployment
+
+[DEMO](https://booksbyyou.herokuapp.com/)
+
+# Contributors
+* Georgios Mpovolis,Hema,Oscar Chiriboga
 
 # Description
 
@@ -11,14 +15,15 @@ It allows a user to:
 * search books by different criterias such as titles, authors.
 * Buy books
  
- # Screen Shots
- ## sign up
-  
- ![img signup form](https://user-images.githubusercontent.com/67700843/92006982-5c7bcc00-ed13-11ea-9e02-f5101497a116.PNG)
-
+# Screen Shots
 ## Login
- ![login form](https://user-images.githubusercontent.com/67700843/92007032-6bfb1500-ed13-11ea-894c-204d9c52eb47.PNG)
+ ![login form](./assests/login.png)
 (1 MB)
 
+## Main Page
+![Search](./assests/index.png)
 
-![capture](https://user-images.githubusercontent.com/67700843/92036231-e50f6200-ed3d-11ea-968b-b3de5599827d.PNG)
+## My Wishlist
+
+![Wishlist](./assests/mywishlist.png)
+
