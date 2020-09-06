@@ -14,12 +14,15 @@ function getBooks(){
     var jNeedChange = false;
     var index = 0;
 
-
     if ((data.length % 4) > 0) {
+        console.log("Data.length%4=",(data.length % 4));
         jNeedChange = true;
+        console.log(jNeedChange);
     }
 
-    for (var i = 0; i < Math.floor(data.length/4); i++) {
+    console.log("for loop i comparison:",Math.ceil(data.length/4))
+
+    for (var i = 0; i < Math.ceil(data.length/4); i++) {
         var display4 = `<div class="row">`;
 
         for (var j = 0; j < 4; j++) {
@@ -78,7 +81,7 @@ function getBooks(){
                             ${buyable}`;
 
             display4 = display4 + result;
-            if (i === (Math.floor(data.length/4)-1) && jNeedChange) {
+            if (i === (Math.ceil(data.length/4)-1) && jNeedChange) {
                 j = (4 - (data.length % 4));
                 jNeedChange = false;
             };
@@ -97,9 +100,7 @@ function getBooks(){
       event.preventDefault();
       console.log("click works delete");
       var deleteId = $(this).parent().attr("class").trim().split(" ")[1];
-      console.log("id: ", deleteId);
       deleteId = parseInt(deleteId);
-      console.log("id: ", deleteId);
       $.ajax({
         method: "DELETE",
         url: "/api/wishlist/" + deleteId
