@@ -29,27 +29,15 @@ function search(title) {
 
 function display(response) {
     $(".searchDisplay").text("");
-    console.log(response.items.length);
-    var iNeedChange = false;
     var jNeedChange = false;
     var index = 0;
-    if (response.items.length < 12) {
-        iNeedChange = true;
-        if ((response.items.length % 4) > 0) {
-            jNeedChange = true;
-        }
-    }
-    for (var i = 0; i < 3; i++) {
+
+    if ((response.items.length % 4) > 0) {
+        jNeedChange = true;
+    };
+    
+    for (var i = 0; i < Math.ceil(response.items.length/4); i++) {
         var display4 = `<div class="row">`;
-
-
-        if (iNeedChange) {
-            if (response.items.length < 5) {
-                i = i + 2;
-            } else if (response.items.length < 9) {
-                i = i + 1;
-            }
-        }
 
         for (var j = 0; j < 4; j++) {
 
